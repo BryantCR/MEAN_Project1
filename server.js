@@ -1,7 +1,7 @@
 //*REQUIRES------------------------------------------------------------------------------------------
 const express = require('express');
 const session = require( 'express-session' );
-const userRouter = require('./server/routers/userRouter');
+const {UserRouter} = require('./server/routers/userRouter');
 const path = require('path');
 const app = express();
 var cors = require('cors')
@@ -25,7 +25,7 @@ require("./server/config/database");
 
 //*ROUTES------------------------------------------------------------------------------------------
 
-app.use( '/users', userRouter  );
+app.use( '/users', UserRouter  );
 
 
 
