@@ -13,7 +13,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 60000 * 30 }
-    
 }));
 //app.use(express.static(path.join(__dirname, "/public/dist/public")));
 
