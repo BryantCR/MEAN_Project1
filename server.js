@@ -22,4 +22,4 @@ app.listen(port, function(){
     console.log("This server is working on port: 8080");
 })
 
-//Hola amiguitos
+//Trando de entender el código de Johandro
