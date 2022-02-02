@@ -1,7 +1,6 @@
 //* REQUIRES
 const mongoose = require('mongoose');
 
-
 //*----------------CONSTRUCTOR-------------------------------------------------------------------------------------
 const UserSchema = new mongoose.Schema({
 
