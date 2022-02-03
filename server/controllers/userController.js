@@ -11,10 +11,12 @@ const UserController = {
         let username = req.body.username
         let password = req.body.password
 
+        console.log( "_________Start Data_________");
         console.log( "New user data: (firstname)", firstname );
         console.log( "New user data: (lastname)", lastname );
         console.log( "New user data: (email)", email );
         console.log( "New user data: (username)", username );
+        console.log( "_________Data Complete_________");
 
         if( firstname && lastname && email && password && username){
             bcrypt.hash(password,10)
@@ -36,7 +38,7 @@ const UserController = {
                         email : data.email,
                         username : data.username
                     }
-                    res.status(200).json(userInfo);
+                    res.status(200).json("Data from UserController.createNewUser: ", userInfo);
                 })
                 .catch(err=>{
                     res.status(404).json(err).end()
