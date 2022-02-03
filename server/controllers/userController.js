@@ -11,6 +11,11 @@ const UserController = {
         let username = req.body.username
         let password = req.body.password
 
+        console.log( "New user data: (firstname)", firstname );
+        console.log( "New user data: (lastname)", lastname );
+        console.log( "New user data: (email)", email );
+        console.log( "New user data: (username)", username );
+
         if( firstname && lastname && email && password && username){
             bcrypt.hash(password,10)
             .then(encryptedpass =>{
