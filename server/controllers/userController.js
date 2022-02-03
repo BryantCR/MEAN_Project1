@@ -10,6 +10,7 @@ const UserController = {
         let email = req.body.email;
         let username = req.body.username;
         let password = req.body.password;
+        let confpassword = req.body.confpassword;
         let admincode = req.body.admincode;
         let isValid = true;
         let errormsjs = {};
