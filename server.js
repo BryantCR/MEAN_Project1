@@ -19,6 +19,9 @@ app.use(session({
 }));
 //app.use(express.static(path.join(__dirname, "/pu
 
+//TEST EJS
+app.set( 'Views', __dirname + '/Views' );
+app.set( 'view engine', 'ejs' );
 
 //*DATABASE------------------------------------------------------------------------------------------
 require("./server/config/database");
@@ -27,7 +30,9 @@ require("./server/config/database");
 
 app.use( '/users', UserRouter  );
 
-
+app.get( '/', function( req, res){
+    res.render( 'login' );
+});
 
 //*PORT------------------------------------------------------------------------------------------
 let port = 8080

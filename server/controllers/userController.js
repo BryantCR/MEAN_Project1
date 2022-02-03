@@ -8,15 +8,17 @@ const UserController = {
         let firstname = req.body.firstname
         let lastname = req.body.lastname
         let email = req.body.email
+        let username = req.body.username
         let password = req.body.password
 
-        if( firstname && lastname && email && password ){
+        if( firstname && lastname && email && password && username){
             bcrypt.hash(password,10)
             .then(encryptedpass =>{
                 newUser = {
                     firstname,
                     lastname,
                     email,
+                    username,
                     password : encryptedpass
                 }
                 UserModel
@@ -26,9 +28,9 @@ const UserController = {
                         _id: data._id,
                         firstname : data.firstname,
                         lastname : data.lastname,
-                        email : data.email
+                        email : data.email,
+                        username : data.username
                     }
-                    
                     res.status(200).json(userInfo);
                 })
                 .catch(err=>{

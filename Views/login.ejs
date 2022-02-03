@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <form (submit)="registerUser($event)">
+            <h1 class="formTitle">
+                Register
+            </h1>
+            <div class="errors">{{errors.errEmptySpace}}</div>
+            <div class="form">
+                <div>
+                    <label for="firstname">
+                        First Name
+                    </label>
+                    <input type="text" [(ngModel)]="newUser.firstname" name="firstname"/>
+                    <div class="errors">{{errors.errFirstname}}</div>
+                </div>
+                
+                <div>
+                    <label for="lastname">
+                        Last Name
+                    </label>
+                    <input type="text" [(ngModel)]="newUser.lastname" name="lastname"/>
+                    <div class="errors">{{errors.errLastname}}</div>
+                </div>
+
+                <div>
+                    <label for="email">
+                        Email
+                    </label>
+                    <input type="text" [(ngModel)]="newUser.email" name="email"/>
+                    <div class="errors">{{errors.emailexits}}</div>
+                </div>
+                
+                <div>
+                    <label for="username">
+                        Username
+                    </label>
+                    <input type="text" [(ngModel)]="newUser.username" name="username"/>
+                    <div class="errors">{{errors.username}}</div>
+                </div>
+                
+                <div>
+                    <label for="password">
+                        Password
+                    </label>
+                    <input type="password" [(ngModel)]="newUser.password" name="password"/>
+                    <div class="errors">{{errors.errPassword}}</div>
+                </div>
+                
+                <div>
+                    <label for="confpassword">
+                        Confirm Password
+                    </label>
+                    <input type="password" [(ngModel)]="confpassword" name="confpassword"/>
+                    <div class="errors">{{errors.errConfirmpass}}</div>
+                </div>
+
+                <div>
+                    <label for="confpassword">
+                        Do you have "Admin Code"?
+                    </label>
+                    <input type="password" [(ngModel)]="confpassword" name="confpassword"/>
+                    <div class="errors">{{errors.errConfirmpass}}</div>
+                </div>
+                
+                <div>
+                    <button class="formButton" type="submit">
+                        Register
+                    </button>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
