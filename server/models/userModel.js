@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema({
 
     admintype : {
         type : String,
-        required : true
+        required : false
     },
 
     recoverToken : {
