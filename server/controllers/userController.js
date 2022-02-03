@@ -10,6 +10,7 @@ const UserController = {
         let email = req.body.email
         let username = req.body.username
         let password = req.body.password
+        let admincode = req.body.admincode
 
         console.log( "_________Start Data_________");
         console.log( "New user data: (firstname)", firstname );
