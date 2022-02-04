@@ -12,13 +12,19 @@ const UserController = {
         let password = req.body.password;
         let confpassword = req.body.confpassword;
         let admincode = req.body.admincode;
-        let isValid = true;
+        var isValid = true;
         let errormsjs = {};
-
+        
         function validateEmail(){
-            var regx = /^([a-z0-9\._]+)@([a-z0-9])+.([a-z]+)(.[a-z]+)?$/
+            let regx = /^([a-z0-9\._]+)@([a-z0-9])+.([a-z]+)(.[a-z]+)?$/
             if(regx.email){
-                alert("You provide a valid Email")
+                //alert("You provide a valid Email")
+                console.log("You provide a valid Email");
+                return isValid = true;
+            }
+            else{
+                console.log("You provide an invalid Email");
+                return isValid = false;
             }
         }
 
@@ -47,16 +53,7 @@ const UserController = {
                 console.log("email field must have valid characters");
                 isValid = false;
             }
-            if(regx.email){
-                alert("You provide a valid Email")
-                console.log("You provide a valid Email");
-                isValid = true;
-            }
-            else{
-                alert("You provide a invalid Email")
-                console.log("You provide a invalid Email");
-                isValid = false;
-            }
+            validateEmail()
             if(username.length < 5){
                 errormsjs.usernamelen = "Username field must be at least 5 characters long"
                 console.log("Username field must be at least 5 characters long");
@@ -74,6 +71,7 @@ const UserController = {
             }
 
             if(isValid){
+                console.log("All the data sended was correct");
                 bcrypt.hash(password,10)
                 .then(encryptedpass =>{
                     newUser = {
