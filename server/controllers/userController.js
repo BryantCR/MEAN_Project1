@@ -7,13 +7,20 @@ const UserController = {
         
         let firstname = req.body.firstname;
         let lastname = req.body.lastname;
-        let email = req.body.email;
+        var email = req.body.email;
         let username = req.body.username;
         let password = req.body.password;
         let confpassword = req.body.confpassword;
         let admincode = req.body.admincode;
         let isValid = true;
         let errormsjs = {};
+
+        function validateEmail(){
+            var regx = /^([a-z0-9\._]+)@([a-z0-9])+.([a-z]+)(.[a-z]+)?$/
+            if(regx.email){
+                alert("You provide a valid Email")
+            }
+        }
 
         console.log( "_________Start Data_________");
         console.log( "New user data: (firstname)", firstname );
@@ -33,6 +40,21 @@ const UserController = {
             if(lastname.length < 5){
                 errormsjs.lastnamelen = "Lastname field must be at least 5 characters long"
                 console.log("Lastname field must be at least 5 characters long");
+                isValid = false;
+            }
+            if(email.length < 5){
+                errormsjs.lastnamelen = "email field must have valid characters"
+                console.log("email field must have valid characters");
+                isValid = false;
+            }
+            if(regx.email){
+                alert("You provide a valid Email")
+                console.log("You provide a valid Email");
+                isValid = true;
+            }
+            else{
+                alert("You provide a invalid Email")
+                console.log("You provide a invalid Email");
                 isValid = false;
             }
             if(username.length < 5){
@@ -81,6 +103,7 @@ const UserController = {
             }
         }
         else{
+            console.log("You must to provide all the data required");
             res.status( 406 ).end();
         }
     },
