@@ -27,22 +27,27 @@ const UserController = {
             
             if(firstname.length < 3){
                 errormsjs.firstnamelen = "Firstname field must be at least 3 characters long"
+                console.log("Firstname field must be at least 3 characters long");
                 isValid = false;
             }
             if(lastname.length < 5){
                 errormsjs.lastnamelen = "Lastname field must be at least 5 characters long"
+                console.log("Lastname field must be at least 5 characters long");
                 isValid = false;
             }
             if(username.length < 5){
                 errormsjs.usernamelen = "Username field must be at least 5 characters long"
+                console.log("Username field must be at least 5 characters long");
                 isValid = false;
             }
             if(password.length < 8){
                 errormsjs.passlen = "Password field must be at least 8 characters long"
+                console.log("Password field must be at least 5 characters long");
                 isValid = false;
             }
             if(password !== confpassword){
                 errormsjs.passnotmatch = "Confirm password and password doesn't match, please be sure you type the right password"
+                console.log("Confirm password and password doesn't match, please be sure you type the right password");
                 isValid = false;
             }
 
