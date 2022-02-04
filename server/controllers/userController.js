@@ -16,7 +16,8 @@ const UserController = {
         let errormsjs = {};
         
         function validateEmail(){
-            let regx = /^([a-z0-9\._]+)@([a-z0-9]+).([a-z]+)(.[a-z]+)?$/
+            let regx = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+            // /^([a-z0-9\._]+)@([a-z0-9]+).([a-z]+)(.[a-z]+)?$/
             if(regx.email){
                 //alert("You provide a valid Email")
                 console.log("You provide a valid Email");
