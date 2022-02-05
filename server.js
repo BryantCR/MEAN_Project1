@@ -32,6 +32,10 @@ require("./server/config/database");
 
 app.use( '/company', UserRouter  );
 
+app.get( '/', function( req, res){
+    res.render( 'login' );
+});
+
 //*PORT------------------------------------------------------------------------------------------
 let port = 8080
 app.listen(port, function(){

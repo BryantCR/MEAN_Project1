@@ -7,6 +7,7 @@ const UserController = {
 
     loadLogin : function( req, res){
         res.render( 'login' );
+        console.log("Render login");
     },
 
     createNewUser: function ( req, res) {
