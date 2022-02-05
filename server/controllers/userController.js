@@ -1,13 +1,19 @@
 const {UserModel} = require('../models/userModel');
 const bcrypt = require( 'bcrypt' );
+const flash = require('express-flash');
+const { use } = require('bcrypt/promises');
 
 const UserController = {
+
+    loadLogin : function( req, res){
+        res.render( 'login' );
+    },
 
     createNewUser: function ( req, res) {
         
         let firstname = req.body.firstname;
         let lastname = req.body.lastname;
-        var email = req.body.email;
+        let email = req.body.email;
         let username = req.body.username;
         let password = req.body.password;
         let confpassword = req.body.confpassword;
@@ -16,6 +22,7 @@ const UserController = {
         let errormsjs = {};
         
         function validateEmail(){
+            let email = req.body.email;
             let regx = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
             // /^([a-z0-9\._]+)@([a-z0-9]+).([a-z]+)(.[a-z]+)?$/
             if(regx.email){
@@ -54,7 +61,7 @@ const UserController = {
                 console.log("email field must have valid characters");
                 isValid = false;
             }
-            validateEmail()
+            //validateEmail()
             if(username.length < 5){
                 errormsjs.usernamelen = "Username field must be at least 5 characters long"
                 console.log("Username field must be at least 5 characters long");
@@ -105,6 +112,61 @@ const UserController = {
             console.log("You must to provide all the data required");
             res.status( 406 ).end();
         }
+    },
+
+    login: function (req,res) {
+        let username = req.body.username
+        let password = req.body.password
+
+        if(username && password){
+            UserModel
+                .getUserByUsername(username)
+                .then(data =>{
+                    if(!data){
+                        throw new Error( "That user doesn't exist!" );
+                    }
+                    bcrypt.compare( password, data.password )
+                    .then(flag =>{
+                        if( !flag ){
+                            let errormsj = {
+                                passworderror: "Wrong password!"
+                            }
+                            res.status(400).json(errormsj);
+                            throw new Error( "Wrong password!" )
+                        }
+                        userInfo = {
+                            _id: data._id,
+                            firstname : data.firstname,
+                            lastname : data.lastname,
+                            email : data.email,
+                            username: data.username
+                        }
+                        req.session.firstname = data.firstname,
+                        req.session.lastname = data.lastname,
+                        req.session.email = data.email,
+                        req.session.username = data.username,
+
+                        res.status(200).json(userInfo);
+                    })
+                    .catch( error => {
+                        res.statusMessage = error.message;
+                        res.status(406).end()
+                        req.redirect( '/' );
+                    }); 
+                })
+                .catch( error => {
+                    res.statusMessage = error.message;
+                    res.status( 404 ).end();
+                    console.log(error);
+                });
+        }
+        else{
+            let errormsj = {
+                emptyerror: "You've to provide the required information"
+            }
+            res.status(400).json(errormsj)
+        }
+
     },
 
 }

@@ -1,6 +1,7 @@
 //*REQUIRES------------------------------------------------------------------------------------------
 const express = require('express');
 const session = require( 'express-session' );
+const flash = require('express-flash');
 const {UserRouter} = require('./server/routers/userRouter');
 const path = require('path');
 const app = express();
@@ -9,7 +10,8 @@ var cors = require('cors')
 
 //*APP-----------------------------------------------------------------------------------------------
 app.use( express.urlencoded({extended:true}) );
-app.use(cors())
+app.use(cors());
+app.use(flash);
 app.use( express.json() );
 app.use(session({
     secret: 'secret',
@@ -28,11 +30,7 @@ require("./server/config/database");
 
 //*ROUTES------------------------------------------------------------------------------------------
 
-app.use( '/users', UserRouter  );
-
-app.get( '/', function( req, res){
-    res.render( 'login' );
-});
+app.use( '/company', UserRouter  );
 
 //*PORT------------------------------------------------------------------------------------------
 let port = 8080
