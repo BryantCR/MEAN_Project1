@@ -32,12 +32,13 @@ const UserSchema = new mongoose.Schema({
 
     password : {
         type : String,
+        minlength : 3,
         required : true
     },
 
     admintype : {
         type : String,
-        required : true
+        required : false
     },
 
     recoverToken : {
