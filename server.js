@@ -6,7 +6,6 @@ const path = require('path');
 const app = express();
 var cors = require('cors')
 
-
 //*APP-----------------------------------------------------------------------------------------------
 app.use( express.urlencoded({extended:true}) );
 app.use(cors())
@@ -19,15 +18,12 @@ app.use(session({
 }));
 //app.use(express.static(path.join(__dirname, "/pu
 
-
 //*DATABASE------------------------------------------------------------------------------------------
 require("./server/config/database");
 
 //*ROUTES------------------------------------------------------------------------------------------
 
 app.use( '/company', UserRouter  );
-
-
 
 //*PORT------------------------------------------------------------------------------------------
 let port = 8080
