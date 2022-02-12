@@ -25,7 +25,7 @@ require("./server/config/database");
 
 //*ROUTES------------------------------------------------------------------------------------------
 
-app.use( '/users', UserRouter  );
+app.use( '/company', UserRouter  );
 
 
 
