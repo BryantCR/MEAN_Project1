@@ -8,6 +8,8 @@ import { MainComponent } from './main/main.component';
 // 1. IMPORT SEVICE
 import { UsersService } from './Services/users.service';
 import { RegisterComponent } from './register/register.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { RegisterComponent } from './register/register.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   // 2. Fill Providers
