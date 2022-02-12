@@ -1,4 +1,8 @@
 const {UserModel} = require('../models/userModel');
+const bcrypt = require( 'bcrypt' );
+const flash = require('express-flash');
+const { use } = require('bcrypt/promises');
+
 
 const UserController = {
 
@@ -98,7 +102,7 @@ const UserController = {
                             email : data.email,
                             username : data.username
                         }
-                        res.status(200).json("Data from UserController.createNewUser: ", userInfo);
+                        res.status(200).json({"UserCreated":userInfo});
                     })
                     .catch(err=>{
                         res.status(404).json(err).end()
